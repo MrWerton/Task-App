@@ -4,7 +4,7 @@ import {Request, Response, NextFunction} from 'express'
  const validateid = async ( req:Request, res:Response, next:NextFunction)=>{
 	const {id} = req.params;
 	if(!isUiid(id)){
-		return res.status(400).json({error: "this id don'ts valid"})
+		return res.status(400).json({error: "this id not is valid"})
 	}
 	try{
 		const task = await Task.findById(id)

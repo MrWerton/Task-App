@@ -5,7 +5,7 @@ import { Request, Response } from 'express'
 const TaskCtrl = {
  getTask: async (req:Request, res:Response)=>{
   try{
-    const tasks = await Task.find({})
+    const tasks = await Task.find()
      return res.status(200).json({tasks})
   }catch(err:any){
     return res
@@ -18,19 +18,18 @@ const TaskCtrl = {
 	if(!title || !description){
 		return res
     .status(400)
-    .json({error: "You must insert a title or a description"})	
+    .json({message: "You must insert a title or a description"})	
 	}
   try{
     const task = new Task({
 		_id: uuid(),	
 		title,
-		description,
-		doing: false
+		description
 		})
     await task.save()
     return res
     .status(201)
-    .json({msg: "Task Created Successfully!"})
+    .json({msg: "Task Created Successfully!", task})
   }catch(err:any){
     return res
     .status(400)
@@ -57,9 +56,9 @@ const TaskCtrl = {
       .json({ error: err.message })
     }
   },
-  DeleteTask: async(req:Request, res:Response)=> {
-      const {id} = req.params
-      try {
+  deleteTask: async(req:Request, res:Response)=> {
+    try {
+        const {id} = req.params
         await Task.findByIdAndRemove(id)
         return res
         .status(200)
@@ -71,8 +70,8 @@ const TaskCtrl = {
       }
     },
     patchTask: async(req:Request, res:Response) =>{
-      const { state } = req.body;
       try{
+        const { state } = req.body;
          await Task.findByIdAndUpdate({_id: req.params.id}, {
           state
         })
