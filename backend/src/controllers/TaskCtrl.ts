@@ -42,7 +42,7 @@ const TaskCtrl = {
     if (!title && !description) {
       return res
         .status(400)
-        .json({ error: "You must inform a new title or a new link" });
+        .json({ error: "You must inform a new title or a new description" });
     }try{
         await Task.findByIdAndUpdate({_id: req.params.id}, {
         title,
@@ -89,3 +89,4 @@ const TaskCtrl = {
 }
 
 export {TaskCtrl}
+
