@@ -1,9 +1,13 @@
-import express from 'express'
+import express, {json} from 'express'
+import cors from 'cors'
 require('dotenv').config()
 import {conectionDatabase} from './database'
 
-const app = express();
 conectionDatabase()
+const app = express();
+
+app.use(json())
+app.use(cors())
 
 const port = process.env.PORT || '8070'
 
