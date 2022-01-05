@@ -1,4 +1,4 @@
-import {TaskModel as Task} from '../models/TaskModel'
+import { Task} from '../models/TaskModel'
 import {v4 as uuid} from 'uuid'
 import { Request, Response } from 'express'
 
@@ -38,16 +38,15 @@ const TaskCtrl = {
   }
   },
   updateTask: async(req:Request, res:Response) =>{
-    const { title, description, doing } = req.body;
+    const { title, description } = req.body;
     if (!title && !description) {
       return res
         .status(400)
         .json({ error: "You must inform a new title or a new link" });
     }try{
-       await Task.findOneAndUpdate({_id: req.params.id}, {
+        await Task.findByIdAndUpdate({_id: req.params.id}, {
         title,
-        description,
-        doing
+        description
       })
       return res
       .status(200)
@@ -66,6 +65,21 @@ const TaskCtrl = {
         .status(200)
         .json({ message: "Task Removed Succesfully!" });
       }catch (err:any) {
+        res
+        .status(500)
+        .json({ error: err.message })
+      }
+    },
+    patchTask: async(req:Request, res:Response) =>{
+      const { state } = req.body;
+      try{
+         await Task.findByIdAndUpdate({_id: req.params.id}, {
+          state
+        })
+        return res
+        .status(200)
+        .json({ message: `task ${state? 'done': 'do'}!` });
+      } catch (err:any) {
         res
         .status(500)
         .json({ error: err.message })

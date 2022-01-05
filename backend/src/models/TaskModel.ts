@@ -4,7 +4,7 @@ interface Itask{
     _id: string,
     title: string,
     description: string,
-    doing: boolean
+    state: boolean
 }
 const TaskSchema = new Schema<Itask>({
     _id:{
@@ -19,13 +19,13 @@ const TaskSchema = new Schema<Itask>({
         type: String,
         required: true
     },
-    doing:{
+    state:{
         type: Boolean,
         default: false
     },
     
 })
 
-const TaskModel = model('TaskModel', TaskSchema)
+const Task = model('Task', TaskSchema)
 
-export {TaskModel}
+export {Task}

@@ -7,6 +7,7 @@ TaskRoute.get('/', TaskCtrl.getTask);
 TaskRoute.post('/', TaskCtrl.postTask);
 TaskRoute.put('/:id',validateid, TaskCtrl.updateTask);
 TaskRoute.delete('/:id',validateid, TaskCtrl.DeleteTask);
+TaskRoute.patch('/:id',validateid, TaskCtrl.patchTask);
 
 
 
