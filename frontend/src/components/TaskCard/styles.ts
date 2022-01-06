@@ -22,7 +22,14 @@ export const Title = styled.h3`
 `
 export const CheckBox = styled.div`
     font-size: 22px;
-    color: red;
+    .checked{
+        color: #9FE09E;
+    }
+    .unCheked{
+        color: #FF5E5E;
+    }
+    background-color: none;
+    border: none;
   
     
 `

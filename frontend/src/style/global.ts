@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
  
 const GlobalStyle = createGlobalStyle`
-
-
     *{
     margin: 0;
     padding: 0;
@@ -12,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
         background: #111827;
         width: 100vw;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+        overflow-y: auto;
     };
     h1, h2, h3{
         font-family: 'Piedra', cursive;

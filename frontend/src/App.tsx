@@ -1,4 +1,5 @@
 import {Header} from './components/Header';
+import { TaskForm } from './components/TaskForm';
 import { RoutesApp } from './routes';
 import {GlobalStyle} from './style/global'
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
     <GlobalStyle/>
       <Header/>
+      <TaskForm/>
       <RoutesApp/>
     </>
   );

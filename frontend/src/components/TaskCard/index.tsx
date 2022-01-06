@@ -10,17 +10,15 @@ interface Itask{
   title: string,
   description: string,
   state: boolean,
-  
+  changeState(): boolean;
 }
-
-const TaskCard = ({description, state, title}:Itask) => {
- 
+const TaskCard = ({description, state, title, changeState}:Itask) => {
   return (
     <Container>
       <Header>
          <Wrapper>
-           <CheckBox>
-           {state?<ImCheckboxChecked/>: <ImCheckboxUnchecked/>}
+           <CheckBox onClick={changeState}>
+           {state?<ImCheckboxChecked className='checked'/>: <ImCheckboxUnchecked className='unCheked'/>}
            </CheckBox>
            <Title>{title}</Title>
            </Wrapper>
