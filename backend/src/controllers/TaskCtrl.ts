@@ -6,7 +6,7 @@ const TaskCtrl = {
  getTask: async (req:Request, res:Response)=>{
   try{
     const tasks = await Task.find()
-     return res.status(200).json({tasks})
+     return res.status(200).json(tasks)
   }catch(err:any){
     return res
     .status(500)
@@ -43,7 +43,7 @@ const TaskCtrl = {
         .status(400)
         .json({ error: "You must inform a new title or a new description" });
     }try{
-        await Task.findByIdAndUpdate({_id: req.params.id}, {
+         await Task.findByIdAndUpdate({_id: req.params.id}, {
         title,
         description
       })
@@ -70,6 +70,7 @@ const TaskCtrl = {
       }
     },
     patchTask: async(req:Request, res:Response) =>{
+    
       try{
         const { state } = req.body;
          await Task.findByIdAndUpdate({_id: req.params.id}, {
