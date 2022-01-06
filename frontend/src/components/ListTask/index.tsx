@@ -1,6 +1,6 @@
 import { Container } from './styles';
 import { useEffect, useState } from 'react'
-import {api} from '../services'
+import {api} from '../../services'
 import TaskCard from '../TaskCard';
 
 interface Itask{
@@ -9,20 +9,43 @@ interface Itask{
   state: boolean,
   _id: string,
 }
-const ListTask = () => {
+const Test = [
+  {
+    _id: "1",
+    title: "Test One",
+    description: "test One description lorem ipson bla bla bla",
+    state: false
+  },
+  {
+    _id: "2",
+    title: "Test two",
+    description: "test two description lorem ipson bla bla bla",
+    state: false
+  },
+  {
+    _id: "1",
+    title: "Test three",
+    description: "test three description lorem ipson bla bla bla",
+    state: true
+  }
+]
+
+interface IParams{
+  param: string;
+}
+const ListTask = ({param}:IParams) => {
   const [tasks, setTask] = useState<Itask[]>([]);
   useEffect(() => {
     showAllTask()
-}, []) 
-async function showAllTask(){
-    const {data} = await api.get("/task");
-    setTask(data)
-}
+  }, []) 
+  async function showAllTask(){
+      const {data} = await api.get('task'+ param);
+      setTask(data)
+  }
   return (
     <Container>
        {
-         tasks.map(task=>(
-           
+         Test.map(task=>( 
            <TaskCard key={task._id} description={task.description} title={task.title} state={task.state}/>
          ))
        }
@@ -30,4 +53,4 @@ async function showAllTask(){
   );
 }
 
-export default ListTask;
+export {ListTask};

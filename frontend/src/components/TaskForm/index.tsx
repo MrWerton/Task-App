@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-const CreateTaskForm = () => {
+const TaskForm = () => {
   return (
     <Container>
       <h1>CreateTaskForm</h1>
@@ -8,4 +8,4 @@ const CreateTaskForm = () => {
   );
 };
 
-export default CreateTaskForm;
+export  {TaskForm};

@@ -1,11 +1,11 @@
-import ListTask from '../../components/ListTask';
+import { ListTask } from '../../components/ListTask';
 import { Container } from './styles';
 
 const TodoPage = () => {
   return (
     <Container>
-      <h1>Hello</h1>
-      <ListTask/>
+      <h1>Todo</h1>
+      <ListTask param='todo'/>
     </Container>
   );
 };

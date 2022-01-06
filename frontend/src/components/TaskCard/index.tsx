@@ -9,6 +9,7 @@ interface Itask{
 }
 
 const TaskCard = ({description, state, title}:Itask) => {
+ 
   return (
     <Container>
       {state? <p>going</p>: <p>doing</p>}

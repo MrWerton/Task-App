@@ -1,15 +1,22 @@
-import { Container } from './styles';
+import { Container, Nav, Logo } from './styles';
 import {Link} from 'react-router-dom' 
-import { DoingPage } from '../../pages/DoingPage';
-import { TodoPage } from '../../pages/TodoPage';
+import LogoIcon from '../../assets/images/Logo.svg'
+
 
 const Header = () => {
   return (
     <Container>
-          <Link to='/task/todo'>Todo</Link>
-          <Link to='/task/doing'>Doing</Link>
+          <Logo>
+              <img src={LogoIcon} alt="Icon Logo"/>
+              <h1>Task</h1>
+          </Logo>
+          <Nav>
+            <Link to='/task'>Home</Link>
+            <Link to='/task/todo'>Todo</Link>
+            <Link to='/task/doing'>Doing</Link>
+          </Nav>
     </Container>
   );
 };
 
-export default Header;
+export {Header};
