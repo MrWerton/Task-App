@@ -28,7 +28,7 @@ position: relative;
 export const IconClose = styled(IoIosCloseCircle)`
     position: absolute;
     right: 15px;
-    top: 15 px;
+    top: 15px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
