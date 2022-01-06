@@ -63,7 +63,7 @@ const TaskCtrl = {
         .status(400)
         .json({ error: "You must inform a new title or a new description" });
     }try{
-         await Task.findByIdAndUpdate({_id: req.params.id}, {
+        await Task.findByIdAndUpdate({_id: req.params.id}, {
         title,
         description
       })
@@ -90,15 +90,17 @@ const TaskCtrl = {
       }
     },
     patchTask: async(req:Request, res:Response) =>{
-    
-      try{
-        const { state } = req.body;
-         await Task.findByIdAndUpdate({_id: req.params.id}, {
-          state
-        })
+      try{  
+         const taskCheck = await Task.findById(req.params.id)
+        if(!taskCheck){
+           res.json({msg: "task not found"})
+        }else{
+            taskCheck.state = !taskCheck.state;
+            taskCheck.save()
+          }
         return res
         .status(200)
-        .json({ message: `task ${state? 'done': 'do'}!` });
+        .json({ message: `task ${(taskCheck?.state) ? 'done': 'do'}!` });
       } catch (err:any) {
         res
         .status(500)
