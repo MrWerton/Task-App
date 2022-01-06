@@ -3,9 +3,29 @@ import {v4 as uuid} from 'uuid'
 import { Request, Response } from 'express'
 
 const TaskCtrl = {
- getTask: async (req:Request, res:Response)=>{
+ getAllTask: async (req:Request, res:Response)=>{
   try{
     const tasks = await Task.find()
+     return res.status(200).json(tasks)
+  }catch(err:any){
+    return res
+    .status(500)
+    .json({err:true, message:err.message})
+  }
+},
+ getTaskTodo: async (req:Request, res:Response)=>{
+  try{
+    const tasks = await Task.find({state: false})
+     return res.status(200).json(tasks)
+  }catch(err:any){
+    return res
+    .status(500)
+    .json({err:true, message:err.message})
+  }
+},
+ getTaskDoing: async (req:Request, res:Response)=>{
+  try{
+    const tasks = await Task.find({state: true})
      return res.status(200).json(tasks)
   }catch(err:any){
     return res

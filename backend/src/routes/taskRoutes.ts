@@ -3,7 +3,9 @@ import { TaskCtrl} from '../controllers/TaskCtrl';
 import {validateid} from '../middlewares/TaskMdlw'
 const TaskRoute = express.Router();
 
-TaskRoute.get('/', TaskCtrl.getTask);
+TaskRoute.get('/', TaskCtrl.getAllTask);
+TaskRoute.get('/doing', TaskCtrl.getTaskDoing);
+TaskRoute.get('/todo', TaskCtrl.getTaskTodo);
 TaskRoute.post('/', TaskCtrl.postTask);
 TaskRoute.put('/:id',validateid, TaskCtrl.updateTask);
 TaskRoute.delete('/:id',validateid, TaskCtrl.deleteTask);
