@@ -1,5 +1,5 @@
 import {ListTask} from '../../components/ListTask';
-import { Container } from './styles';
+import { Container } from '../PagesStyle';
 
 const HomePage = () => {
   const x = 'todo'
