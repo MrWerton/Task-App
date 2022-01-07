@@ -1,10 +1,12 @@
 import { Container, IconClose, Button, Form, Box } from './styles';
-
-const TaskForm = () => {
+interface IcloseForm{
+  closeForm(): void
+}
+const TaskForm = ({closeForm}:IcloseForm) => {
   return (
     <Container>
       <Box>
-          <IconClose/>
+          <IconClose onClick={closeForm}/>
           <Form>
                 <label>
                   <h3>Title</h3>
@@ -16,7 +18,7 @@ const TaskForm = () => {
                 </label>
              
           </Form>
-          <Button>
+          <Button >
             add
           </Button>
       </Box>

@@ -2,17 +2,31 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     margin: 0 auto;
-    margin-top: 70px;
+    margin-top: 50px;
     width: 620px;
-    h1{
-        position: sticky;
-        top: 80px;
-        left: 0;
-        align-items: center;
-        padding: 20px 0;
-        
-        background-color: #111827;
-        z-index: 111;
-    }
+  
     
 `;
+export const Header = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #111827;
+    z-index: 111;
+    position: sticky;
+    top: 80px;
+    left: 0;
+    button{
+        padding: 10px 25px;
+        border-radius: 10px;
+        color: #111827;
+        cursor: pointer;
+    }
+    h1{
+      
+      
+  }
+`

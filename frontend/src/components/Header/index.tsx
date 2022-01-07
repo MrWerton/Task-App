@@ -11,9 +11,13 @@ const Header = () => {
               <h1>Task</h1>
           </Logo>
           <Nav>
-            <Link to='/task'>Home</Link>
-            <Link to='/task/todo'>Todo</Link>
-            <Link to='/task/doing'>Doing</Link>
+            
+              <Link to='/'>All taks</Link>
+            
+              <Link to='/task/todo'>Todo</Link>
+            
+              <Link to='/task/doing'>Doing</Link>
+            
           </Nav>
     </Container>
   );

@@ -26,15 +26,14 @@ const ListTask = ({param}:IParams) => {
       const {data} = await api.get('/task/'+ param);
       setTask(data)
   }
-  function changeState(){
-    console.log("value")
-    return false;
+  async function changeState(params: string){
+     await api.patch('/task/' + params)
   }
   return (
     <Container>
        {
          tasks.map(task=>( 
-           <TaskCard changeState={()=>changeState()} key={task._id} description={task.description} title={task.title} state={task.state}/>
+           <TaskCard changeState={()=>changeState(task._id)} key={task._id}  description={task.description} title={task.title} state={task.state}/>
          ))
        }
     </Container>

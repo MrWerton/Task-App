@@ -17,14 +17,28 @@ export const Container = styled.div`
     }
 `;
 
-export const Nav = styled.nav`    
-    a{
+export const Nav = styled.nav` 
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+
+    a{  
+        padding: 10px;
         font-size: 28px;
-        &:not(:nth-child(1)){
-            margin-left: 15px;
+        transition: ease-in-out 0.2s;
+        border-radius: 50%; 
+        &:hover{
+            color: #1F2937;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 3px 0px 10px 5px rgba(255, 255, 255, 0.2);
         }
+        
     }
+    
 `
+
 export const Logo = styled.div`
    display: flex;
    align-items: center;

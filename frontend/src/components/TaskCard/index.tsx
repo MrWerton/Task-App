@@ -1,18 +1,19 @@
 import { Container, Wrapper, Title,
-  Description, Content, Header,Btn, CheckBox 
+  Description, Content, Header,Option, CheckBox, IconMore 
 } from './styles';
 import {ImCheckboxUnchecked} from 'react-icons/im'
 import {ImCheckboxChecked} from 'react-icons/im'
-import {FiMoreVertical} from 'react-icons/fi'
-
+import { BoxOption } from '../BoxOption';
+import { useState } from 'react';
 
 interface Itask{
   title: string,
   description: string,
   state: boolean,
-  changeState(): boolean;
+  changeState(): void;
 }
 const TaskCard = ({description, state, title, changeState}:Itask) => {
+  const [miniModal, setMiniModal] = useState(false)
   return (
     <Container>
       <Header>
@@ -22,9 +23,12 @@ const TaskCard = ({description, state, title, changeState}:Itask) => {
            </CheckBox>
            <Title>{title}</Title>
            </Wrapper>
-         <Btn>
-           <FiMoreVertical/>
-         </Btn>
+         <Option>
+           <IconMore onClick={()=> setMiniModal(!miniModal)}/>
+           {miniModal&&
+             <BoxOption/>
+           }
+         </Option>
       </Header>
       <Content>
           <Description>{description}</Description>
