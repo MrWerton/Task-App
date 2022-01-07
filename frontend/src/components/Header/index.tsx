@@ -14,9 +14,9 @@ const Header = () => {
             
               <Link to='/'>All taks</Link>
             
-              <Link to='/task/todo'>Todo</Link>
+              <Link to='/task/todo'>To do</Link>
             
-              <Link to='/task/doing'>Doing</Link>
+              <Link to='/task/done'>Done</Link>
             
           </Nav>
     </Container>

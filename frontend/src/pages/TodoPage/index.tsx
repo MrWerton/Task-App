@@ -11,7 +11,7 @@ const TodoPage = () => {
   return (
     <Container>
       <Header>
-          <h1>Doing</h1>
+          <h1>To do</h1>
           <button onClick={()=>showForm()}>Add</button>
       </Header>
       {modalForm&&

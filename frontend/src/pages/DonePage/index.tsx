@@ -3,7 +3,7 @@ import { ListTask } from '../../components/ListTask';
 import { TaskForm } from '../../components/TaskForm';
 import { Container, Header } from '../PagesStyle';
 
-const DoingPage = () => {
+const DonePage = () => {
   const [modalForm, setModalForm] = useState(false)
   function showForm(){
     setModalForm(!modalForm)
@@ -11,16 +11,16 @@ const DoingPage = () => {
   return (
     <Container>
     <Header>
-          <h1>Doing</h1>
+          <h1>Done</h1>
           <button onClick={()=>showForm()}>Add</button>
       </Header>
       {modalForm&&
         <TaskForm closeForm={()=>showForm()}/>
           
       }
-      <ListTask param='doing'/>
+      <ListTask param='done'/>
     </Container>
   );
 };
 
-export {DoingPage};
+export {DonePage};
