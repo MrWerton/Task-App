@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 100%;
     gap: 15px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     animation-name: list;
     animation-duration: 1s;
     transition: 2s ease-in-out;

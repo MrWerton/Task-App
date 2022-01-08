@@ -11,11 +11,8 @@ const Header = () => {
               <h1>Task</h1>
           </Logo>
           <Nav>
-            
               <Link to='/'>All taks</Link>
-            
               <Link to='/task/todo'>To do</Link>
-            
               <Link to='/task/done'>Done</Link>
             
           </Nav>

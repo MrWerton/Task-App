@@ -35,6 +35,10 @@ export const IconClose = styled(IoIosCloseCircle)`
     font-size: 40px;
     color: #dadada;
     cursor: pointer;
+    transition: 0.4ms;
+    &:hover{
+        color: #770000;
+    }
 `
 export const Button = styled.button`
     margin-top: 20px;
@@ -44,6 +48,10 @@ export const Button = styled.button`
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
+    transition: filter 400ms;
+    &:hover{
+        filter: brightness(0.9)
+    }
 `
 export const Form = styled.form`
     margin: 20px;

@@ -7,26 +7,28 @@ import { BoxOption } from '../BoxOption';
 import { useState } from 'react';
 
 interface Itask{
+  _id: string,
   title: string,
   description: string,
   state: boolean,
   changeState(): void;
 }
-const TaskCard = ({description, state, title, changeState}:Itask) => {
+const TaskCard = ({description,_id, state, title, changeState}:Itask) => {
   const [miniModal, setMiniModal] = useState(false)
+  
   return (
     <Container>
-      <Header>
+      <Header >
          <Wrapper>
            <CheckBox onClick={changeState}>
            {state?<ImCheckboxChecked className='checked'/>: <ImCheckboxUnchecked className='unCheked'/>}
            </CheckBox>
-           <Title>{title}</Title>
+           <Title done={state}>{title}</Title>
            </Wrapper>
          <Option>
            <IconMore onClick={()=> setMiniModal(!miniModal)}/>
            {miniModal&&
-             <BoxOption/>
+             <BoxOption id={_id} title={title} description={description} params={_id}/>
            }
          </Option>
       </Header>

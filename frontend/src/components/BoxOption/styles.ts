@@ -19,9 +19,16 @@ export const Container = styled.div`
     
 `;
 export const IconEdit  = styled(AiFillEdit)`
-
+    cursor: pointer;
+    &:hover{
+        color: green;
+    }
 `;
 export const IconDelete = styled(AiFillDelete)`
+  cursor: pointer;
+    &:hover{
+        color: red;
+    }
 
 `;
 export const Arrow = styled(IoMdArrowDropup)`

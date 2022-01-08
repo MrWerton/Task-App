@@ -16,12 +16,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
 `
-export const Title = styled.h3`
-    font-size: 24px;
-    color: #dadada;
-  
-    
-`
+
 export const CheckBox = styled.div`
     font-size: 22px;
     cursor: pointer;
@@ -41,13 +36,26 @@ export const Description = styled.p`
     color: #dadada;
 
 `
+
+interface IDoneProps{
+    done: boolean
+}
+
 export const Header = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    align-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        align-items: center;
+
 `
+
+export const Title = styled.div(({done}: IDoneProps)=>(`
+    text-decoration:  ${!done?'none':'line-through'};
+    font-size: 24px;
+    color: #dadada;
+`
+))
 export const Content = styled.div`
     font-size: 16px;
     color: #dadada;
@@ -66,6 +74,8 @@ export const IconMore = styled(FiMoreHorizontal)`
     font-size: 26px;
     color: #dadada;
     cursor: pointer;
+    z-index: 10;
+    
 
 `
 
