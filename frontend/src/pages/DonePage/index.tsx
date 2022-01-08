@@ -18,7 +18,7 @@ const DonePage = () => {
         <TaskForm closeForm={()=>showForm()}/>
           
       }
-      <ListTask param='done'/>
+      <ListTask param='doing'/>
     </Container>
   );
 };
