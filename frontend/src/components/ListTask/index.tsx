@@ -1,5 +1,4 @@
 import { Container } from './styles';
-import {api} from '../../services'
 import TaskCard from '../TaskCard';
 import { useAxios } from '../../hooks/UseAxios';
 
@@ -17,25 +16,25 @@ interface IParams{
 
 const ListTask = ({param}:IParams) => {
   
-  async function changeState(params: string){
-     await api.patch('/task/' + params)
-  }
-   const {data} = useAxios<Itask[]>(`task/${param}`);
+   const {data} = useAxios(`task/${param}`);
+
+  
   if(!data){
       return <h1>Carregando...</h1>
   }
+
+  
   return (
     <Container>
      {
-         data.map((task:Itask)=>( 
+         data.tasks.map((task:Itask)=>( 
            <TaskCard 
-           _id={task._id}
-          changeState={()=>changeState(task._id)} 
+           _id={task._id} 
           key={task._id}  
           description={task.description} 
           title={task.title} state={task.state}/>
          ))
-       }
+       } 
     </Container>
   );
 }

@@ -1,13 +1,11 @@
 import {Routes, Route} from "react-router-dom";
-import { DonePage } from "../pages/DonePage";
-import { AllPage } from "../pages/AllPage";
-import { TodoPage } from "../pages/TodoPage";
+import { Home } from "../pages/Home";
 function RoutesApp() {
     return (
           <Routes>
-            <Route path='/' element={ <AllPage/>}/>
-            <Route path='/task/done' element={ <DonePage/>}/>
-            <Route path='/task/todo' element={ <TodoPage/>}/>
+            <Route path='/' element={ <Home title="All Tasks" param=""/>}/>
+            <Route path='/task/done' element={ <Home title="Done" param="done"/>}/>
+            <Route path='/task/todo' element={ <Home title="To-do" param="todo"/>}/>
           </Routes>
     )
 }

@@ -5,22 +5,23 @@ import {ImCheckboxUnchecked} from 'react-icons/im'
 import {ImCheckboxChecked} from 'react-icons/im'
 import { BoxOption } from '../BoxOption';
 import { useState } from 'react';
+import { useModal } from '../../context/Modais';
 
 interface Itask{
   _id: string,
   title: string,
   description: string,
   state: boolean,
-  changeState(): void;
 }
-const TaskCard = ({description,_id, state, title, changeState}:Itask) => {
+const TaskCard = ({description,_id, state, title}:Itask) => {
   const [miniModal, setMiniModal] = useState(false)
+  const{CheckedTask} = useModal()
   
   return (
     <Container>
       <Header >
          <Wrapper>
-           <CheckBox onClick={changeState}>
+           <CheckBox onClick={()=>CheckedTask(_id)}>
            {state?<ImCheckboxChecked className='checked'/>: <ImCheckboxUnchecked className='unCheked'/>}
            </CheckBox>
            <Title done={state}>{title}</Title>
@@ -28,7 +29,7 @@ const TaskCard = ({description,_id, state, title, changeState}:Itask) => {
          <Option>
            <IconMore onClick={()=> setMiniModal(!miniModal)}/>
            {miniModal&&
-             <BoxOption id={_id} title={title} description={description} params={_id}/>
+             <BoxOption id={_id} title={title} description={description}/>
            }
          </Option>
       </Header>

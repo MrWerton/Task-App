@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState, useContext, EventHandler, FormEventHandler, FormEvent, ChangeEvent } from "react";
+import { useAxios } from "../hooks/UseAxios";
 import { api } from "../services";
 
 interface I{
@@ -9,14 +10,19 @@ interface I{
     description: string;
     handleDescription: (e:ChangeEvent<HTMLTextAreaElement>) => void;
     onSubmit: (e:FormEvent) => void;
-    handleEdit: (a:string,c:string, b:string) => void;
+    handleEdit: (id:string,title:string, descri:string) => void;
     isId: string;   
+    deleteTask: (id: string) => void
+    CheckedTask: (id: string) => void;
 }
 
 interface Itask{
   title: string,
   description: string,
+  state?: boolean,
+  _id?: string,
 }
+
 export const ModalContext =  createContext({} as I);
 type AuthContextProviderProps = {
     children: ReactNode;
@@ -30,11 +36,35 @@ export function ModalProvider(props: AuthContextProviderProps){
       title: '', 
       description: ''
     })
+
+    const {data, error, mutate} = useAxios(`task`);
+  
     function handleEdit(id: string,title:string, descri:string){
       setTitle(title);
       setDescription(descri)
       setStateMenu(true)
       setIsId(id)
+    }
+    async function deleteTask(id: string){
+      await api.delete(`/task/${id}`)
+      const taskUp = {
+         tasks: data.tasks.filter((task:Itask)=> task._id !==id)
+      }
+      mutate(taskUp, false)
+    
+    }
+    async function CheckedTask(id: string){
+      await api.patch(`/task/${id}`)
+      const updatedVideos = {
+        tasks: data.tasks.map((tasks:Itask)=>{
+          if(task._id == id){
+            return {...tasks, title: task.title, description: task.description, state: !task.state}
+          }
+          return task
+        })
+      };
+      mutate(updatedVideos, false);
+     
     }
     function toggleMenu() {
       if(title){
@@ -81,7 +111,10 @@ export function ModalProvider(props: AuthContextProviderProps){
           handleTitle,
           onSubmit,
           handleEdit,
-          isId
+          isId,
+          CheckedTask,
+          deleteTask
+
         }}
       >
         {props.children}
@@ -100,6 +133,8 @@ export const useModal = () => {
       handleTitle,
       title,
       description,
+      CheckedTask,
+      deleteTask,
       handleDescription} = useContext(ModalContext);
     return {
       stateMenu, 
@@ -109,5 +144,7 @@ export const useModal = () => {
       handleTitle,
       title,
       description, 
+      CheckedTask,
+      deleteTask,
       handleDescription}
 }

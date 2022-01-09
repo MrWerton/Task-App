@@ -9,7 +9,7 @@ interface Itask{
 }
 const TaskForm = () => {
 
-  const {toggleMenu,onSubmit, handleEdit ,handleTitle, title, description, handleDescription} = useModal()
+  const {toggleMenu,onSubmit ,handleTitle, title, description, handleDescription} = useModal()
 
   return (
     <Container>

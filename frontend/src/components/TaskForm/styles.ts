@@ -14,7 +14,7 @@ export const Container = styled.div`
     left: 0;
 `;
 export const Box = styled.div`
-position: relative;
+    position: relative;
     background-color: #1F2937;
     width: 400px;
     height: 450px;
