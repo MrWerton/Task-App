@@ -58,6 +58,7 @@ export function ModalProvider(props: AuthContextProviderProps){
         setDescription('')
       }
         setStateMenu(!stateMenu);
+        setIsId('')
       }
       function handleTitle(e:ChangeEvent<HTMLInputElement>) {
         const value = e.target.value
