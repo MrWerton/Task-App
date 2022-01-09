@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useState, useContext, EventHandler, FormEventHandler, FormEvent, ChangeEvent } from "react";
-import { useAxios } from "../hooks/UseAxios";
 import { api } from "../services";
 
 interface I{
@@ -36,34 +35,19 @@ export function ModalProvider(props: AuthContextProviderProps){
       title: '', 
       description: ''
     })
-
-    const {data, error, mutate} = useAxios(`task`);
-  
     function handleEdit(id: string,title:string, descri:string){
       setTitle(title);
       setDescription(descri)
       setStateMenu(true)
       setIsId(id)
+      console.log(isId)
     }
     async function deleteTask(id: string){
       await api.delete(`/task/${id}`)
-      const taskUp = {
-         tasks: data.tasks.filter((task:Itask)=> task._id !==id)
-      }
-      mutate(taskUp, false)
     
     }
     async function CheckedTask(id: string){
       await api.patch(`/task/${id}`)
-      const updatedVideos = {
-        tasks: data.tasks.map((tasks:Itask)=>{
-          if(task._id == id){
-            return {...tasks, title: task.title, description: task.description, state: !task.state}
-          }
-          return task
-        })
-      };
-      mutate(updatedVideos, false);
      
     }
     function toggleMenu() {
@@ -83,19 +67,21 @@ export function ModalProvider(props: AuthContextProviderProps){
         const value = e.target.value
         setDescription(value);
       }
+  
       function onSubmit(e:FormEvent){
         e.preventDefault()
         const Newtask = {
           title: title,
           description: description
         }
-
         if(isId){
           api.put(`/task/${isId}`, Newtask)
         }else{
           api.post('/task', Newtask)
         }
         toggleMenu()
+
+
         setTitle('');
         setDescription('');
 

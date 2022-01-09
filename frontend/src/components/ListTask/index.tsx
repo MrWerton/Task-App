@@ -1,6 +1,8 @@
 import { Container } from './styles';
 import TaskCard from '../TaskCard';
-import { useAxios } from '../../hooks/UseAxios';
+import { useEffect, useState } from 'react';
+import { api } from '../../services';
+
 
 interface Itask{
   title: string,
@@ -15,19 +17,20 @@ interface IParams{
 
 
 const ListTask = ({param}:IParams) => {
-  
-   const {data} = useAxios(`task/${param}`);
-
-  
-  if(!data){
-      return <h1>Carregando...</h1>
+ const [task, setTask] = useState<Itask[]>([])
+  useEffect(() => {
+      getTask()
+    
+  }, [task])
+async function getTask(){
+    const {data} = await api.get(`task/${param}`)
+    setTask(data.tasks)
   }
-
   
   return (
     <Container>
      {
-         data.tasks.map((task:Itask)=>( 
+         task.map((task:Itask)=>( 
            <TaskCard 
            _id={task._id} 
           key={task._id}  

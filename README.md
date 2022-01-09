@@ -12,7 +12,6 @@
 * React
 * Styled-components
 * React-Icons
-* Swr
 
 ## Design
 * https://www.figma.com/file/r5ryxvsqV92Ek5hCHAB4bA/Task-App?node-id=0%3A1

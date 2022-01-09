@@ -6,7 +6,7 @@ const TaskCtrl = {
  getAllTask: async (req:Request, res:Response)=>{
   try{
     const tasks = await Task.find()
-     return res.status(200).json(tasks)
+     return res.status(200).json({tasks})
   }catch(err:any){
     return res
     .status(500)
@@ -16,17 +16,17 @@ const TaskCtrl = {
  getTaskTodo: async (req:Request, res:Response)=>{
   try{
     const tasks = await Task.find({state: false})
-     return res.status(200).json(tasks)
+     return res.status(200).json({tasks})
   }catch(err:any){
     return res
     .status(500)
     .json({err:true, message:err.message})
   }
 },
- getTaskDoing: async (req:Request, res:Response)=>{
+ getTaskDone: async (req:Request, res:Response)=>{
   try{
     const tasks = await Task.find({state: true})
-     return res.status(200).json(tasks)
+     return res.status(200).json({tasks})
   }catch(err:any){
     return res
     .status(500)
@@ -35,11 +35,6 @@ const TaskCtrl = {
 },
  postTask: async (req:Request, res:Response)=>{ 
  const {title, description} = req.body;
-	if(!title || !description){
-		return res
-    .status(400)
-    .json({message: "You must insert a title or a description"})	
-	}
   try{
     const task = new Task({
 		_id: uuid(),	
@@ -58,11 +53,7 @@ const TaskCtrl = {
   },
   updateTask: async(req:Request, res:Response) =>{
     const { title, description } = req.body;
-    if (!title && !description) {
-      return res
-        .status(400)
-        .json({ error: "You must inform a new title or a new description" });
-    }try{
+    try{
         await Task.findByIdAndUpdate({_id: req.params.id}, {
         title,
         description
@@ -106,9 +97,7 @@ const TaskCtrl = {
         .status(500)
         .json({ error: err.message })
       }
-    },
- 
+    }, 
 }
 
 export {TaskCtrl}
-

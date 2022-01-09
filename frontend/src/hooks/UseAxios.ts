@@ -2,7 +2,7 @@ import useSwr from 'swr'
 import { api } from "../services";
 
 
-export function useAxios<Data = any, Error = any, Mutate = any>(url: string){
+export function useAxios<Data = any, Error = any>(url: string){
     const {data, error, mutate} = useSwr<Data, Error>(
         url, 
         async(url:string)=>{
