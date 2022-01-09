@@ -5,7 +5,7 @@
 ## Technologies
 
 * TypeScript
-* NongoDb
+* MongoDb
 * Mongoose
 * Express 
 * Axios
